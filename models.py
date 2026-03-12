@@ -13,7 +13,12 @@ class Customer:
         self.purchase_history = []
 
     def verify_user(self):
+        # Returns True if the customer has a non-empty name
         return len(self.name) > 0
+
+    def add_to_history(self, order):
+        # Records a completed order in the customer's purchase history
+        self.purchase_history.append(order)
 
 
 class MenuItem:
@@ -32,7 +37,16 @@ class Menu:
         self.items.append(item)
 
     def filter_by_category(self, category):
+        # Returns all items matching the given category
         return [item for item in self.items if item.category == category]
+
+    def sort_by_popularity(self):
+        # Returns items sorted by popularity rating, highest first
+        return sorted(self.items, key=lambda item: item.popularity_rating, reverse=True)
+
+    def sort_by_price(self):
+        # Returns items sorted by price, lowest first
+        return sorted(self.items, key=lambda item: item.price)
 
 
 class Order:
@@ -44,4 +58,5 @@ class Order:
         self.selected_items.append(item)
 
     def compute_total(self):
+        # Sums the price of all selected items
         return sum(item.price for item in self.selected_items)
