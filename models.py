@@ -60,3 +60,40 @@ class Order:
     def compute_total(self):
         # Sums the price of all selected items
         return sum(item.price for item in self.selected_items)
+
+
+# --- Manual Test Scenario ---
+if __name__ == "__main__":
+    # Set up customer
+    customer = Customer("Alice")
+    print(f"Customer: {customer.name} | Verified: {customer.verify_user()}")
+
+    # Set up menu items
+    burger = MenuItem("Spicy Burger", 8.99, "Mains", 4.5)
+    soda = MenuItem("Large Soda", 2.49, "Drinks", 3.8)
+    brownie = MenuItem("Chocolate Brownie", 3.99, "Desserts", 4.9)
+    wrap = MenuItem("Veggie Wrap", 6.49, "Mains", 3.2)
+
+    # Build menu
+    menu = Menu()
+    for item in [burger, soda, brownie, wrap]:
+        menu.add_item(item)
+
+    # Filter by category
+    print(f"Mains: {[i.name for i in menu.filter_by_category('Mains')]}")
+
+    # Sort by popularity
+    print(f"By popularity: {[i.name for i in menu.sort_by_popularity()]}")
+
+    # Sort by price
+    print(f"By price: {[i.name for i in menu.sort_by_price()]}")
+
+    # Place an order
+    order = Order(customer)
+    order.add_item(burger)
+    order.add_item(soda)
+    print(f"Order total for {order.customer.name}: ${order.compute_total():.2f}")
+
+    # Add to purchase history
+    customer.add_to_history(order)
+    print(f"Purchase history count: {len(customer.purchase_history)}")
