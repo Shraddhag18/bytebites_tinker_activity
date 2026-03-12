@@ -23,4 +23,13 @@ See [bytebites_spec.md](bytebites_spec.md) for the full feature request, candida
 
 - `bytebites_spec.md` — Feature spec, candidate classes, and Mermaid UML diagram
 - `draft_from_copilot.md` — AI-generated UML draft with review notes
+- `bytebites_design.md` — Final verified UML class diagram
+- `models.py` — Python class implementations with filtering, sorting, and order logic
+- `test_bytebites.py` — 12 pytest tests covering happy path and edge cases
 - `.github/agents/agent.agent.md` — Custom AI agent for generating ByteBites UML and scaffolds
+
+## Running Tests
+
+```bash
+python -m pytest test_bytebites.py -v
+```
